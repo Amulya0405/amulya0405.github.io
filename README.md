@@ -2,7 +2,7 @@
 
 Welcome to my personal portfolio website! This is a showcase of my projects, skills, experience, and certifications as an aspiring Data Scientist and Full-Stack developer.
 
-🌐 **Live Portfolio:** [amulya04.github.io](https://amulya04.github.io)
+🌐 **Live Portfolio:** [amulya04.github.io](https://amulya0405.github.io)
 
 ---
 
