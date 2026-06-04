@@ -52,7 +52,7 @@ Welcome to my personal portfolio website! This is a showcase of my projects, ski
 ## 📞 Contact
 - **Email:** amulyasomashekcar64@gmail.com
 - **Phone:** +91 9738538477
-- **LinkedIn:** [linkedin.com/in/amulya84](https://linkedin.com/in/amulya84)
+- **LinkedIn:** [linkedin.com/in/amulya84](https://linkedin.com/in/amulya04)
 - **Location:** Bangalore, India
 
 ---
