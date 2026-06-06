@@ -78,6 +78,17 @@
             }
         }
 
+        @keyframes slideInMenu {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
         section {
             animation: fadeInUp 0.6s ease-out;
             scroll-margin-top: 50px;
@@ -148,6 +159,74 @@
     background-color: #ffffff;
     color: #000000 !important;
     transform: translateY(-2px);
+}
+
+/* HAMBURGER MENU */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(10px, -10px);
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    background-color: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 99;
+    animation: slideInMenu 0.3s ease-out;
+    flex-direction: column;
+    gap: 0;
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-menu a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: color 0.3s;
+}
+
+.mobile-menu a:hover {
+    color: var(--text-main);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 
@@ -715,8 +794,15 @@
         }
 
 
-/* RESPONSIVE DESIGN */
+/* RESPONSIVE DESIGN - TABLET & MOBILE */
+@media (max-width: 1024px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
+    /* HEADER ADJUSTMENTS */
     header { 
         padding: 1rem 1.5rem;
     }
@@ -726,13 +812,21 @@
     }
     
     .nav-links {
-        gap: 1rem;
+        display: none; /* HIDE DESKTOP MENU */
+    }
+
+    .hamburger {
+        display: flex; /* SHOW HAMBURGER */
     }
     
-    .nav-links a {
-        font-size: 0.7rem;
+    /* HERO BACKGROUND TEXT */
+    .hero-background-text {
+        font-size: 8rem;
+        right: -10%;
+        opacity: 0.02;
     }
     
+    /* CONTAINER & SECTIONS */
     .container { 
         padding: 1.5rem; 
     }
@@ -740,28 +834,66 @@
     section {
         padding: 3rem 0;
     }
+
+    .hero {
+        padding: 4rem 0 4rem 0;
+    }
     
     .hero h1 { 
-        font-size: 2rem; 
+        font-size: 2.5rem; 
     }
     
     .section-title {
         font-size: 1.8rem;
     }
-    
-    .split-layout, 
-    .timeline-item, 
-    .contact-grid, 
-    .contact-form,
-    .education-item {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+
+    /* BUTTONS */
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
     }
     
+    /* LAYOUTS */
+    .split-layout { 
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .timeline-item { 
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .timeline-item:hover {
+        padding-left: 0;
+        padding-right: 0;
+        border-left: none;
+    }
+    
+    .contact-grid { 
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-form {
+        grid-template-columns: 1fr;
+    }
+
     .form-group.full-width { 
         grid-column: span 1; 
     }
+
+    .contact-form .btn-talk {
+        grid-column: span 1;
+        width: 100%;
+    }
     
+    /* GRIDS */
     .grid-3 {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -771,29 +903,147 @@
     .skill-category {
         padding: 1rem;
     }
-    
-    footer { 
-        padding: 1.5rem; 
-        flex-direction: column; 
+
+    /* STATS BAR */
+    .stats-bar {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    /* EDUCATION */
+    .education-item {
+        grid-template-columns: 1fr;
         gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .education-score {
+        text-align: left;
+    }
+
+    /* CERTIFICATIONS */
+    .certification-card {
+        gap: 1rem;
+        padding: 1.5rem;
+        flex-direction: column;
+    }
+
+    .certification-card:hover {
+        transform: translateX(0);
+    }
+
+    /* FOOTER */
+    footer { 
+        padding: 1.5rem;
+        flex-direction: column; 
+        gap: 1.5rem;
         text-align: center;
     }
+
+    footer div:last-child {
+        flex-direction: column;
+        gap: 1rem;
+    }
 }
+
+/* ADD THIS NEW SECTION FOR SMALL PHONES */
+@media (max-width: 480px) {
+    header {
+        padding: 0.75rem 1rem;
+    }
+
+    .logo {
+        font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    section {
+        padding: 2rem 0;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero h2 {
+        font-size: 1.1rem;
+    }
+
+    .hero-background-text {
+        font-size: 5rem;
+    }
+
+    .project-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .education-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .skill-list li {
+        font-size: 0.75rem;
+    }
+
+    .cert-content h3 {
+        font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 1rem;
+    }
+
+    footer {
+        font-size: 0.7rem;
+    }
+}
+
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">AS.</div>
-        <nav class="nav-links">
-            <a href="#about">About</a>
-            <a href="#work">Work</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#education">Education</a>
-            <a href="#contact" class="btn-talk">Let's Talk →</a>
-        </nav>
-    </header>
+    <div class="logo">AS.</div>
+    <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact" class="btn-talk">Let's Talk →</a>
+    </nav>
+    <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</header>
+
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#contact" class="btn-talk" style="background-color: var(--accent-yellow); color: #000000 !important;">Let's Talk →</a>
+</nav>
+
+<section id="hero" class="hero">
 
     <section id="hero" class="hero">
         <div class="hero-background-text">AMULYA</div>
@@ -984,7 +1234,6 @@
             <span class="section-num">08</span>
             <span class="section-tag">Get In Touch</span>
             <h2 class="section-title">Let's Talk</h2>
-            
             <div class="contact-grid">
                 <div class="contact-info">
                     <p style="color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8;">Internship roles, collaborations, or a curious dataset you want untangled — my inbox is open.</p>
@@ -1002,6 +1251,11 @@
                     <div class="contact-item">
                         <span class="contact-icon">🔗</span>
                         <a href="https://linkedin.com/in/amulya04" target="_blank">linkedin.com/in/amulya04</a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">📷</span>
+                        <a href="https://www.instagram.com/amulya.s_04" target="_blank">@amulya.s_04</a>
                     </div>
                     
                     <div class="contact-item">
@@ -1037,10 +1291,43 @@
     <footer>
         <div>© 2026 AMULYA S — BUILT WITH LOVE❤️ </div>
         <div>
-            <a href="mailto:amulyasomashekcar64@gmail.com">EMAIL</a>
+            <a href="mailto:amulyasomashekar64@gmail.com">EMAIL</a>
             <a href="https://linkedin.com/in/amulya04" target="_blank">LINKEDIN ↗</a>
         </div>
     </footer>
+
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
 
 </body>
 </html>
